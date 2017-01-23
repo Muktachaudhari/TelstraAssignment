@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableViewController_ListView.h"
 
 @interface ViewController : UIViewController
 {
-    
+    TableViewController_ListView *listView;
 }
 @end
 

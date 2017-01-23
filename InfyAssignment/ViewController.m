@@ -20,6 +20,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
+     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self addNotification];
 
     //Calling WebServiceHandler fetch on background
@@ -27,11 +28,12 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         [webServiceHandler fetch:nil];
     });
+    [self addListView];
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
-  
+    [self updateConstraints];
 }
 //Add notifications for webservice responce
 -(void) addNotification
@@ -47,6 +49,9 @@
 {
     NSString *titleText = (NSString*)[notification object];
     self.title =  titleText;
+    NSArray *dataArray = (NSArray*)[notification userInfo];
+    [listView setDataArray:dataArray];
+    [listView.tableView reloadData];
 }
 //Control comes here after webserviceHandler didn't get data from webservice
 -(void) receivedError :(NSNotification*)notification
@@ -60,11 +65,42 @@
     UIAlertView *noNetworkAlert = [[UIAlertView alloc] initWithTitle:@"No Network Connection" message:@"No network connection. Please try connecting to the Internet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [noNetworkAlert show];
 }
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
-    return YES;
+
+
+-(void) addListView
+{
+    listView = [[TableViewController_ListView alloc] init];
+    [listView.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    listView.tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:listView.view];
 }
 
+//To Update the constraints
+-(void)updateConstraints
+{
+    NSDictionary *viewsDictionary = @{@"tableView":listView.view };
+    
+    NSArray *constraints;
+    
+    constraints= [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|"
+                                                         options: 0
+                                                         metrics:nil
+                                                           views:viewsDictionary];
+    [self.view addConstraints:constraints];
+    
+    constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|"
+                                                          options: 0
+                                                          metrics:nil
+                                                            views:viewsDictionary];
+    [self.view addConstraints:constraints];
+    
+    
+}
 
+//Control comes here after rotating device
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

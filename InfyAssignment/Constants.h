@@ -13,4 +13,9 @@
 #define NotificationReceivedData @"NotificationReceivedData"
 #define NotificationReceivedError @"NotificationReceivedError"
 #define NotificationNetworkCheck @"NotificationNetworkCheck"
+#define NavigationBar_Height 50
+#define DefaultCell_Height 90
+#define CellPadding 50
+#define MaxHeight 40
+#define UILabelFont [UIFont fontWithName:@"Georgia" size:14]
 #endif /* Constants_h */

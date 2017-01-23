@@ -10,6 +10,9 @@
 
 @interface TableViewController_ListView : UITableViewController <UITableViewDataSource>
 {
+     UIActivityIndicatorView *activityIndicator;
+    
 }
-
+@property(nonatomic, strong)NSArray *detailArray;
+-(void) setDataArray :(NSArray*)dataArray;
 @end
