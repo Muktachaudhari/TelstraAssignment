@@ -26,7 +26,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self loadActivityIndicator];
     self.tableView.separatorColor = [UIColor blackColor];
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
