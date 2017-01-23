@@ -9,4 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface ResponceData : NSObject
+
+@property(nonatomic, retain) NSString* title;
+@property(nonatomic, retain) NSString* descriptionDetail;
+@property(nonatomic, retain) NSString* imgUrl;
+
+-(id) setData:(NSDictionary *)infoDict;
 @end

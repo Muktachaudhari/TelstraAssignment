@@ -10,4 +10,5 @@
 
 @interface WebServiceHandler : NSObject 
 
+- (void)fetch:(NSDictionary *)aRequestDictionary;
 @end

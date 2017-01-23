@@ -16,6 +16,7 @@
 		2F9927FF1E3447EF000C7EE9 /* TableViewCell_CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9927FE1E3447EF000C7EE9 /* TableViewCell_CustomCell.m */; };
 		2F9928021E34489D000C7EE9 /* ResponceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9928011E34489D000C7EE9 /* ResponceData.m */; };
 		2F9928051E34504D000C7EE9 /* WebServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9928041E34504D000C7EE9 /* WebServiceHandler.m */; };
+		84904E231E36012E004651AE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 84904E221E36012E004651AE /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		2F9928031E34504D000C7EE9 /* WebServiceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServiceHandler.h; sourceTree = "<group>"; };
 		2F9928041E34504D000C7EE9 /* WebServiceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServiceHandler.m; sourceTree = "<group>"; };
 		2F9928061E351B6A000C7EE9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		84904E211E36012E004651AE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		84904E221E36012E004651AE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 		2F36ADA51E33BF7D00A96923 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84904E211E36012E004651AE /* Reachability.h */,
+				84904E221E36012E004651AE /* Reachability.m */,
 				2F36ADA61E33BF7D00A96923 /* Info.plist */,
 				2F36ADA71E33BF7D00A96923 /* main.m */,
 				2F9928061E351B6A000C7EE9 /* Constants.h */,
@@ -259,6 +264,7 @@
 			files = (
 				2F9927FF1E3447EF000C7EE9 /* TableViewCell_CustomCell.m in Sources */,
 				2F36ADAE1E33BF7D00A96923 /* ViewController.m in Sources */,
+				84904E231E36012E004651AE /* Reachability.m in Sources */,
 				2F36ADAB1E33BF7D00A96923 /* AppDelegate.m in Sources */,
 				2F9927FC1E3447D5000C7EE9 /* TableViewController_ListView.m in Sources */,
 				2F9928051E34504D000C7EE9 /* WebServiceHandler.m in Sources */,
