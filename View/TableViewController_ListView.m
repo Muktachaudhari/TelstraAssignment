@@ -73,8 +73,17 @@
         
         
         cell.thumbNailImage.image = [UIImage imageNamed:@"defaultImages"];
-        [cell.spinner startAnimating];
-        [cell setThumbnailUrlString:urlString];
+        // download the image asynchronously
+        [self downloadImageWithURL:[NSURL URLWithString:urlString] completionBlock:^(BOOL succeeded, UIImage *image) {
+            if (succeeded) {
+                // change the image in the cell
+                cell.thumbNailImage.image = image;
+            }
+            else
+            {
+
+            }
+        }];
         
         
     }
@@ -147,6 +156,21 @@
 {
     [self stopActivityIndicator];
     _detailArray = dataArray;
+}
+- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
 }
 /*
 // Override to support conditional editing of the table view.

@@ -14,5 +14,4 @@
 @property(nonatomic, retain) UILabel *descriptionDetail;
 @property(nonatomic, retain) UIImageView *thumbNailImage;
 @property(nonatomic, retain) NSString *thumbnailUrlString;
-@property(nonatomic, strong) UIActivityIndicatorView *spinner;
 @end

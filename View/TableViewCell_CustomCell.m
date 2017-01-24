@@ -49,8 +49,6 @@
         self.thumbNailImage.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:self.thumbNailImage];
         
-        self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        [self.thumbNailImage addSubview:self.spinner];
         [self.contentView layoutSubviews];
         
         [self updateCellConstraints];
@@ -96,62 +94,6 @@
     [self.contentView addConstraints:constraints];
     
 }
--(void)setThumbnailUrlString:(NSString *)urlString {
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *tStrThumbnails = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"Thumbnails"];
-        NSURL *tImageFileURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@.jpg", tStrThumbnails, _title.text] isDirectory:NO];
-        NSData  *tImageData = [NSData dataWithContentsOfURL:tImageFileURL];
-        
-        if(tImageData) {
-            [self setImageData:tImageData];
-        } else {
-            [self setThumbnailImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]]];
-        }
-    });
-    
-}
 
--(void)setThumbnailImageData:(NSData*)aImageData {
-    
-    NSError *tError = nil;
-    NSString *tStrThumbnails = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"Thumbnails"];
-    
-    if(tError != nil) {
-        return;
-    }
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:tStrThumbnails]) {
-        
-        if(![[NSFileManager defaultManager] createDirectoryAtPath:tStrThumbnails withIntermediateDirectories:YES attributes:nil error:&tError]) {
-            return;
-        }
-    }
-    
-    if(tError == nil) {
-        NSURL *tImageFileURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@.png", tStrThumbnails, _title.text] isDirectory:NO];
-        [aImageData writeToURL:tImageFileURL
-                       options:NSDataWritingFileProtectionComplete
-                         error:&tError];
-        
-        if(tError != nil) {
-            return;
-        }
-        
-        [self setImageData:aImageData];
-    }
-    
-}
-
--(void)setImageData:(NSData *)aData {
-    dispatch_async(dispatch_get_main_queue(),^{
-        if (aData) {
-            _thumbNailImage.image = [[UIImage alloc] initWithData:aData];
-            [self.spinner stopAnimating];
-        } else {
-            _thumbNailImage.image = [UIImage imageNamed:@"defaultImages"];
-        }
-    });
-}
 
 @end
